@@ -1,10 +1,31 @@
-<!-- accounts/templates/accounts/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Войти через Telegram</title>
+    <script>
+        // Функция для проверки авторизации
+        async function checkAuthorization() {
+            try {
+                const response = await fetch('/api/check-auth/', { credentials: 'include' });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.is_authenticated) {
+                        // Если пользователь авторизован, перенаправляем на index
+                        window.location.href = '/';
+                    }
+                } else {
+                    console.error('Ошибка при проверке авторизации:', response.status);
+                }
+            } catch (error) {
+                console.error('Ошибка сети:', error);
+            }
+        }
+
+        // Запускаем проверку каждые 2 секунды
+        setInterval(checkAuthorization, 2000);
+    </script>
 </head>
 <body>
     <h1>Авторизация через Telegram</h1>

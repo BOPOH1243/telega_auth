@@ -10,6 +10,10 @@ import hashlib
 import time
 from django.contrib.auth.decorators import login_required
 
+
+def check_auth(request):
+    return JsonResponse({'is_authenticated': request.user.is_authenticated})
+
 def logout_view(request):
     logout(request)
     return redirect('index') 
