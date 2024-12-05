@@ -1,0 +1,17 @@
+<!-- accounts/templates/accounts/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Войти через Telegram</title>
+</head>
+<body>
+    <h1>Авторизация через Telegram</h1>
+    <p>Для авторизации нажмите на кнопку ниже, чтобы открыть Telegram:</p>
+    <a href="https://t.me/{{ bot_username }}?start={{ request.session.session_key }}" target="_blank">
+        <button>Войти через Telegram</button>
+    </a>
+    <p>После входа в Telegram вы будете автоматически авторизованы на сайте.</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- accounts/templates/accounts/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+    {% if user.is_authenticated %}
+        <p>Вы вошли как <strong>{{ user.username }}</strong>!</p>
+        <a href="{% url 'logout' %}"><button>Выйти</button></a>
+    {% else %}
+        <p>Вы не авторизованы.</p>
+        <a href="{% url 'login' %}"><button>Войти через Telegram</button></a>
+    {% endif %}
+</body>
+</html>
